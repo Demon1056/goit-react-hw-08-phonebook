@@ -3,7 +3,7 @@ import { Form, Field, ErrorMessage } from 'formik';
 export const FormStyles = styled(Form)`
   margin: 0 auto;
   padding: 20px;
-  width: 400px;
+  width: 450px;
   height: auto;
   border-radius: 5%;
   text-align: center;
