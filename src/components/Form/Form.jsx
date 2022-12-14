@@ -3,8 +3,8 @@ import * as yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { FormStyles, FieldStyles, ErrorMessageStyled } from './Form.styled';
-import { addContact } from 'components/redux/operations';
-import { getContacts } from 'components/redux/selectors';
+import { addContact } from 'redux/contacts/operations';
+import { getContacts } from 'redux/contacts/selectors';
 
 const phoneRegExp =
   /^\(?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;

@@ -5,13 +5,13 @@ import { ContactForm } from './Form/Form';
 import { ContactList } from './ContactsList/ContactsList';
 import { Filter } from './Filter/Filter';
 import { PhoneBook, InformationArea } from './App.styled';
-import { fetchContacts } from './redux/operations';
+import { fetchContacts } from 'redux/contacts/operations';
 import {
   getContacts,
   getIsLoading,
-  getFilter,
   getError,
-} from './redux/selectors';
+} from '../redux/contacts/selectors';
+import { getFilter } from 'redux/filter/selectors';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -30,7 +30,6 @@ export const App = () => {
       name.toUpperCase().includes(filter.toUpperCase())
     );
   };
-
   return (
     <PhoneBook>
       {error &&
