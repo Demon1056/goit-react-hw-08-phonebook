@@ -4,9 +4,10 @@ import {
   FormStyles,
   FieldStyles,
   ErrorMessageStyled,
-} from './RegisterPage.styled';
+} from 'components/Form/ProjectForm.styled';
+
 const textValid = /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi;
-const emailValid = /^(@)$/gi;
+
 const schema = yup.object().shape({
   name: yup
     .string()
@@ -14,9 +15,8 @@ const schema = yup.object().shape({
     .required('Sorry, but Name is a required field'),
   email: yup
     .string()
-    // .matches(phoneRegExp, 'Phone number is not valid')
     .required('Sorry, but Email is a required field')
-    .matches(emailValid, 'Email can only contain Latin letters.'),
+    .email('Please write your real email (Example: MAILBOX@SUBDOMAIN.COM)'),
   password: yup
     .string()
     .length(8, ' Sorry, but the password should consist of 8 symbols')

@@ -10,7 +10,7 @@ export const LayoutArea = styled.div`
 
 export const PhoneBook = styled.div`
   padding: 20px;
-  width: 500px;
+  width: 300px;
   margin: 0 auto;
   text-align: center;
   border: 4px solid aqua;

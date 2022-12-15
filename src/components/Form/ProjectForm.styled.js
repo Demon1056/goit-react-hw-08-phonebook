@@ -3,7 +3,7 @@ import { Form, Field, ErrorMessage } from 'formik';
 export const FormStyles = styled(Form)`
   margin: 0 auto;
   padding: 20px;
-  width: 450px;
+  width: 250px;
   height: auto;
   border-radius: 5%;
   text-align: center;
@@ -16,7 +16,7 @@ export const FieldStyles = styled(Field)`
 export const ErrorMessageStyled = styled(ErrorMessage)`
   display: block;
   color: red;
-  font-size: 20px;
+  font-size: 10px;
   text-align: center;
   border: 1px solid red;
 `;

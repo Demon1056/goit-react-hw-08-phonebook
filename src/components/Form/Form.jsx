@@ -2,7 +2,11 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { FormStyles, FieldStyles, ErrorMessageStyled } from './Form.styled';
+import {
+  FormStyles,
+  FieldStyles,
+  ErrorMessageStyled,
+} from './ProjectForm.styled';
 import { addContact } from 'redux/contacts/operations';
 import { getContacts } from 'redux/contacts/selectors';
 
