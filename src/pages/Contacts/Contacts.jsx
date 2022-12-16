@@ -15,7 +15,6 @@ import { getFilter } from 'redux/filter/selectors';
 
 const Contacts = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);

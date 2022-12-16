@@ -1,5 +1,7 @@
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { register } from 'redux/auth/operations';
 import {
   FormStyles,
   FieldStyles,
@@ -20,15 +22,19 @@ const schema = yup.object().shape({
   password: yup
     .string()
     .length(8, ' Sorry, but the password should consist of 8 symbols')
-    .matches(textValid, 'Password can only contain Latin letters.')
     .required('Sorry, but Password is a required field'),
 });
 
-const RegisterPage = () => {
+const Register = () => {
+  const dispatch = useDispatch();
+  const registerRequest = (values, actions) => {
+    dispatch(register(values));
+    actions.resetForm();
+  };
   return (
     <Formik
       initialValues={{ name: '', email: '', password: '' }}
-      // onSubmit={(e, actions) => updateContacts(e, actions)}
+      onSubmit={(e, actions) => registerRequest(e, actions)}
       validationSchema={schema}
     >
       <FormStyles>
@@ -52,47 +58,4 @@ const RegisterPage = () => {
     </Formik>
   );
 };
-export default RegisterPage;
-
-// import { useSelector, useDispatch } from 'react-redux';
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { addContact } from 'redux/contacts/operations';
-// import { getContacts } from 'redux/contacts/selectors';
-
-// export const ContactForm = () => {
-//   const contacts = useSelector(getContacts);
-
-//   const dispatch = useDispatch();
-
-//   const updateContacts = (values, actions) => {
-//     if (contacts.find(({ name }) => name === values.name)) {
-//       Notify.warning(`${values.name} is already in contacts`);
-//       actions.resetForm();
-//       return;
-//     }
-//     dispatch(addContact(values));
-//     actions.resetForm();
-//   };
-
-//   return (
-//     <Formik
-//       initialValues={{ name: '', phone: '' }}
-//       onSubmit={(e, actions) => updateContacts(e, actions)}
-//       validationSchema={schema}
-//     >
-//       <FormStyles>
-//         <label>
-//           Name
-//           <FieldStyles type="text" name="name" />
-//         </label>{' '}
-//         <ErrorMessageStyled name="name" component="span" />
-//         <label>
-//           Number
-//           <FieldStyles type="tel" name="phone" />
-//         </label>
-//         <ErrorMessageStyled name="phone" component="span" />
-//         <button type="submit">Add contact</button>
-//       </FormStyles>
-//     </Formik>
-//   );
-// };
+export default Register;

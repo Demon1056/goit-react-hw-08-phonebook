@@ -18,7 +18,7 @@ const schema = yup.object().shape({
     .string()
     .matches(nameValid, 'Name can only contain Latin letters.')
     .required('Sorry, but Name is a required field'),
-  phone: yup
+  number: yup
     .string()
     .length(12, ' Sorry, but the phone number should consist of 12 characters')
     .matches(phoneRegExp, 'Phone number is not valid')
@@ -42,7 +42,7 @@ export const ContactForm = () => {
 
   return (
     <Formik
-      initialValues={{ name: '', phone: '' }}
+      initialValues={{ name: '', number: '' }}
       onSubmit={(e, actions) => updateContacts(e, actions)}
       validationSchema={schema}
     >
@@ -54,9 +54,9 @@ export const ContactForm = () => {
         <ErrorMessageStyled name="name" component="span" />
         <label>
           Number
-          <FieldStyles type="tel" name="phone" />
+          <FieldStyles type="tel" name="number" />
         </label>
-        <ErrorMessageStyled name="phone" component="span" />
+        <ErrorMessageStyled name="number" component="span" />
         <button type="submit">Add contact</button>
       </FormStyles>
     </Formik>

@@ -1,17 +1,20 @@
 import { Outlet } from 'react-router-dom';
 import { PhoneBook, LayoutArea } from './Layout.styled';
-import { Navigation } from 'components/Navigation/Navigation';
+import { IsLoginNavigation } from 'components/Navigation/IsLoginNavigation';
+import { IsNotLoginNavigation } from 'components/Navigation/IsNotLoginNavigation';
+import { useAuth } from 'components/hooks/useAuth';
+import { Suspense } from 'react';
+
 const Layout = () => {
+  const { isLoggedIn } = useAuth();
   return (
     <PhoneBook>
       <LayoutArea>
-        <p>mango@mail.com</p>
-        <button>Logout</button>
+        {isLoggedIn ? <IsLoginNavigation /> : <IsNotLoginNavigation />}
       </LayoutArea>
-      <LayoutArea>
-        <Navigation />
-      </LayoutArea>
-      <Outlet />{' '}
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </PhoneBook>
   );
 };

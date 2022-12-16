@@ -9,7 +9,7 @@ export const ContactList = ({ data }) => {
     <ul>
       {data.map(item => (
         <ListItem key={item.id}>
-          {`${item.name} : ${item.phone}`}
+          {`${item.name} : ${item.number}`}
           <button
             onClick={() => {
               return dispatch(deleteContact(item.id));

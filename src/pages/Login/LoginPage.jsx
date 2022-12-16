@@ -1,12 +1,12 @@
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/operations';
 import {
   FormStyles,
   FieldStyles,
   ErrorMessageStyled,
 } from 'components/Form/ProjectForm.styled';
-
-const textValid = /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi;
 
 const schema = yup.object().shape({
   email: yup
@@ -16,15 +16,19 @@ const schema = yup.object().shape({
   password: yup
     .string()
     .length(8, ' Sorry, but the password should consist of 8 symbols')
-    .matches(textValid, 'Password can only contain Latin letters.')
     .required('Sorry, but Password is a required field'),
 });
 
-const LoginPage = () => {
+const Login = () => {
+  const dispatch = useDispatch();
+  const loginRequest = (values, actions) => {
+    dispatch(logIn(values));
+    actions.resetForm();
+  };
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
-      // onSubmit={(e, actions) => updateContacts(e, actions)}
+      onSubmit={(e, actions) => loginRequest(e, actions)}
       validationSchema={schema}
     >
       <FormStyles>
@@ -43,4 +47,4 @@ const LoginPage = () => {
     </Formik>
   );
 };
-export default LoginPage;
+export default Login;
